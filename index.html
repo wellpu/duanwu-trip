@@ -1,777 +1,1034 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>端午四人 · 小众目的地</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>泉州 · 端午三日 — 古城与海，在石狮看一场日落</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --black: #000;
+    --black: #000000;
     --near-black: #1d1d1f;
     --gray-bg: #f5f5f7;
-    --white: #fff;
-    --blue: #0071e3;
+    --white: #ffffff;
+    --apple-blue: #0071e3;
+    --link-blue: #0066cc;
     --bright-blue: #2997ff;
-    --link-light: #0066cc;
-    --card-dark: #161617;
-    --card-border: rgba(255,255,255,0.09);
-    --text-secondary: rgba(255,255,255,0.56);
-    --text-tertiary: rgba(255,255,255,0.32);
-    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --mono: 'JetBrains Mono', monospace;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--black); color: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    --text-secondary: rgba(0, 0, 0, 0.8);
+    --text-tertiary: rgba(0, 0, 0, 0.56);
+    --text-on-dark-secondary: rgba(255, 255, 255, 0.72);
+    --text-on-dark-tertiary: rgba(255, 255, 255, 0.48);
+    --dark-card-1: #1d1d1f;
+    --dark-card-2: #272729;
+    --dark-card-3: #2a2a2d;
+    --hairline: rgba(255, 255, 255, 0.1);
+    --hairline-light: rgba(0, 0, 0, 0.08);
+    --sunset-orange: #ff7a45;
+    --sunset-rose: #ff5e7e;
 
-  /* ── NAV ── */
+    --font: 'SF Pro Display', 'SF Pro Text', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--near-black);
+    line-height: 1.47;
+    letter-spacing: -0.022em;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+  .container-wide { max-width: 1240px; margin: 0 auto; padding: 0 22px; }
+
+  /* ============== NAV ============== */
   .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    height: 48px;
-    background: rgba(0,0,0,0.78);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(0, 0, 0, 0.72);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 0.5px solid rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center;
+    height: 48px;
   }
-  .nav-wrap { max-width: 980px; width: 100%; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-brand { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; color: var(--white); }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.75); text-decoration: none; letter-spacing: -0.01em; transition: color .15s; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-pill { background: var(--blue); color: var(--white); padding: 6px 14px; border-radius: 980px; font-size: 12px; font-weight: 500; text-decoration: none; letter-spacing: -0.01em; transition: opacity .15s; }
-  .nav-pill:hover { opacity: .82; }
-  @media (max-width: 640px) { .nav-links { display: none; } }
+  .nav-inner {
+    max-width: 1024px; margin: 0 auto; padding: 0 22px;
+    height: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    color: #fff; font-size: 14px; font-weight: 500;
+    letter-spacing: -0.014em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-mark {
+    display: inline-block; width: 6px; height: 6px;
+    background: var(--bright-blue); border-radius: 50%;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: rgba(255,255,255,0.88); font-size: 12px; font-weight: 400;
+    text-decoration: none; letter-spacing: -0.01em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  @media (max-width: 720px) { .nav-links { display: none; } }
 
-  /* ── HERO ── */
+  /* ============== HERO ============== */
   .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 120px 24px 80px;
-    position: relative; overflow: hidden;
+    background: var(--black);
+    color: #fff;
+    padding: 140px 0 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
   .hero::before {
     content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(0,113,227,0.10) 0%, transparent 70%);
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(255, 122, 69, 0.18) 0%, transparent 60%);
     pointer-events: none;
   }
-  .hero-label {
-    font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--bright-blue); margin-bottom: 22px;
+  .hero-eyebrow {
+    font-size: 17px; font-weight: 600;
+    color: var(--bright-blue);
+    letter-spacing: -0.022em;
+    margin-bottom: 8px;
   }
-  .hero-h1 {
-    font-size: clamp(44px, 8vw, 80px);
-    font-weight: 700; line-height: 1.05; letter-spacing: -0.04em;
-    color: var(--white); margin-bottom: 18px;
+  .hero-title {
+    font-size: clamp(40px, 6.5vw, 80px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
   }
-  .hero-h1 span { color: var(--bright-blue); }
   .hero-sub {
-    font-size: clamp(17px, 2vw, 21px); font-weight: 300; line-height: 1.5;
-    color: var(--text-secondary); max-width: 48ch; margin-bottom: 44px;
+    font-size: clamp(19px, 2vw, 24px);
+    font-weight: 400;
+    color: var(--text-on-dark-secondary);
+    max-width: 660px;
+    margin: 0 auto 36px;
+    line-height: 1.35;
     letter-spacing: -0.01em;
   }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 48px; }
-  .chip {
-    display: flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.12);
-    padding: 9px 16px; border-radius: 980px; font-size: 13px; color: rgba(255,255,255,0.8);
+  .hero-ctas {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
   }
-  .chip strong { color: var(--white); font-weight: 600; }
-  .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .cta-filled { background: var(--blue); color: var(--white); padding: 13px 24px; border-radius: 8px; font-size: 16px; font-weight: 400; text-decoration: none; letter-spacing: -0.01em; transition: opacity .15s; }
-  .cta-filled:hover { opacity: .85; }
-  .cta-ghost { background: transparent; color: var(--bright-blue); padding: 12px 24px; border-radius: 980px; border: 1px solid rgba(41,151,255,0.5); font-size: 16px; text-decoration: none; letter-spacing: -0.01em; transition: opacity .15s; }
-  .cta-ghost:hover { opacity: .7; }
+  .btn-primary {
+    background: var(--apple-blue); color: #fff;
+    padding: 12px 24px;
+    border-radius: 980px;
+    font-size: 17px; font-weight: 400;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background .25s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #1d8aef; }
+  .btn-link-pill {
+    color: var(--bright-blue);
+    border: 1px solid var(--bright-blue);
+    padding: 12px 24px;
+    border-radius: 980px;
+    font-size: 17px; font-weight: 400;
+    text-decoration: none;
+    background: transparent;
+    transition: all .25s;
+    display: inline-block;
+  }
+  .btn-link-pill:hover { background: rgba(41, 151, 255, 0.1); }
 
-  /* ── SECTION SHARED ── */
-  .section { padding: 100px 24px; }
-  .section.light { background: var(--gray-bg); color: var(--near-black); }
-  .section.dark { background: var(--black); color: var(--white); }
-  .section.darkalt { background: #080808; color: var(--white); }
-  .wrap { max-width: 980px; margin: 0 auto; }
-  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
-  .eyebrow.light-eye { color: var(--link-light); }
-  .s-h2 { font-size: clamp(32px, 4.5vw, 52px); font-weight: 700; line-height: 1.07; letter-spacing: -0.03em; margin-bottom: 14px; }
-  .s-lead { font-size: 17px; font-weight: 400; line-height: 1.52; color: var(--text-secondary); max-width: 58ch; margin-bottom: 56px; letter-spacing: -0.01em; }
-  .s-lead.light-lead { color: rgba(29,29,31,0.6); }
+  /* ============== HOTEL CARD (Hero bottom) ============== */
+  .hotel-card {
+    margin: 56px auto 0;
+    max-width: 720px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 28px 32px;
+    display: flex; align-items: center; gap: 24px;
+    text-align: left;
+  }
+  .hotel-card .icon {
+    flex-shrink: 0;
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #2c2c2e, #1d1d1f);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--bright-blue);
+  }
+  .hotel-card-body { flex: 1; }
+  .hotel-card-eyebrow {
+    font-size: 12px; font-weight: 600;
+    color: var(--text-on-dark-tertiary);
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .hotel-card-name {
+    font-size: 21px; font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.014em;
+  }
+  .hotel-card-meta {
+    color: var(--text-on-dark-secondary);
+    font-size: 14px;
+  }
+  @media (max-width: 600px) {
+    .hotel-card { flex-direction: column; text-align: center; padding: 24px; margin: 40px 22px 0;}
+    .hotel-card-body { text-align: center; }
+  }
 
-  /* ── BENTO OVERVIEW ── */
-  .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .bento-card {
-    background: var(--card-dark);
-    border: 0.5px solid var(--card-border);
-    border-radius: 18px; padding: 32px 28px;
-    cursor: pointer; position: relative; overflow: hidden;
-    transition: border-color .2s, transform .22s;
-    text-decoration: none; color: inherit; display: block;
+  /* ============== SECTION PATTERN ============== */
+  section.scene {
+    padding: 100px 0;
   }
-  .bento-card:hover { border-color: rgba(0,113,227,0.4); transform: translateY(-2px); }
-  .bento-card.featured { border-color: rgba(0,113,227,0.35); background: linear-gradient(135deg,#0d1520,#080d14); }
-  .bento-card.featured::before {
-    content: '';
-    position: absolute; top: 0; right: 0; width: 160px; height: 160px;
-    background: radial-gradient(circle, rgba(0,113,227,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .bento-num {
-    font-family: var(--mono); font-size: 11px; font-weight: 500;
-    color: var(--text-tertiary); letter-spacing: 0.08em;
-    margin-bottom: 20px; display: block;
-  }
-  .bento-badge {
-    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 980px; margin-bottom: 14px;
-  }
-  .bb-blue { background: rgba(0,113,227,0.18); color: #60b3ff; }
-  .bb-green { background: rgba(52,199,89,0.14); color: #67e485; }
-  .bb-orange { background: rgba(255,149,0,0.14); color: #ffa733; }
-  .bb-pink { background: rgba(255,45,85,0.14); color: #ff7097; }
-  .bb-teal { background: rgba(90,200,250,0.14); color: #5ac8fa; }
-  .bb-yellow { background: rgba(255,214,10,0.14); color: #ffd60a; }
-  .bento-name { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 6px; }
-  .bento-loc { font-size: 13px; color: var(--text-tertiary); letter-spacing: 0.02em; margin-bottom: 14px; }
-  .bento-desc { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.62); letter-spacing: -0.01em; }
-  .bento-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-  .btag { background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); padding: 3px 9px; border-radius: 980px; font-size: 11px; letter-spacing: 0.02em; }
-  .bento-arrow { position: absolute; bottom: 24px; right: 24px; color: rgba(255,255,255,0.22); font-size: 18px; transition: color .2s, right .2s; }
-  .bento-card:hover .bento-arrow { color: var(--bright-blue); right: 20px; }
-  @media (max-width: 860px) { .bento { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) { .bento { grid-template-columns: 1fr; } }
+  .scene-dark { background: var(--black); color: #fff; }
+  .scene-light { background: var(--gray-bg); color: var(--near-black); }
+  .scene-white { background: #fff; color: var(--near-black); }
 
-  /* ── TRANSPORT BAR ── */
-  .transport-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-  .t-card {
-    background: var(--white); border-radius: 12px; padding: 22px 18px;
-    box-shadow: rgba(0,0,0,0.1) 0 2px 16px;
+  .scene-eyebrow {
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    color: var(--apple-blue);
+  }
+  .scene-dark .scene-eyebrow { color: var(--bright-blue); }
+
+  .scene-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    max-width: 18ch;
+  }
+  .scene-title-center {
+    margin-left: auto; margin-right: auto;
     text-align: center;
   }
-  .t-from { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
-  .t-name { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: var(--near-black); margin-bottom: 7px; }
-  .t-detail { font-size: 12.5px; color: rgba(29,29,31,0.55); line-height: 1.55; }
-  .t-time { font-family: var(--mono); font-size: 14px; color: var(--link-light); margin-top: 8px; display: block; }
-  @media (max-width: 760px) { .transport-row { grid-template-columns: 1fr 1fr; } }
-
-  /* ── DETAIL BLOCKS ── */
-  .detail-block {
-    border-top: 0.5px solid rgba(255,255,255,0.07);
-    padding: 72px 0;
+  .scene-lead {
+    font-size: clamp(19px, 2vw, 24px);
+    font-weight: 400;
+    line-height: 1.4;
+    max-width: 60ch;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+    margin-bottom: 56px;
   }
-  .detail-block:first-child { border-top: none; padding-top: 0; }
-  .db-grid { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: start; }
-  .db-left { position: sticky; top: 80px; }
-  .db-num { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.08em; margin-bottom: 10px; }
-  .db-badge-wrap { margin-bottom: 14px; }
-  .db-name { font-size: 36px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.07; margin-bottom: 8px; }
-  .db-where { font-size: 14px; color: var(--text-tertiary); letter-spacing: 0.02em; margin-bottom: 20px; }
-  .db-rec {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(0,113,227,0.14); border: 0.5px solid rgba(0,113,227,0.3);
-    padding: 5px 12px; border-radius: 980px;
-    font-size: 11.5px; color: #60b3ff; font-weight: 600; letter-spacing: 0.04em;
-  }
-  .db-right { display: flex; flex-direction: column; gap: 16px; }
-  .db-card {
-    background: var(--card-dark); border: 0.5px solid var(--card-border);
-    border-radius: 14px; padding: 22px 24px;
-  }
-  .db-card-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--bright-blue); margin-bottom: 8px;
-  }
-  .db-card-title { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; color: var(--white); margin-bottom: 8px; }
-  .db-card-body { font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,0.65); letter-spacing: -0.01em; }
-  .db-card-body strong { color: rgba(255,255,255,0.9); font-weight: 600; }
-  .db-specs { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 0.5px solid rgba(255,255,255,0.06); }
-  .spec { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: rgba(255,255,255,0.58); line-height: 1.55; }
-  .spec svg { flex-shrink: 0; margin-top: 2px; color: var(--bright-blue); }
-  .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
-  .tag-item { background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); padding: 4px 11px; border-radius: 980px; font-size: 12px; }
-  .info-strip {
-    background: rgba(0,113,227,0.08); border: 0.5px solid rgba(0,113,227,0.2);
-    border-radius: 12px; padding: 16px 20px;
-    font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.65);
-  }
-  .info-strip strong { color: var(--bright-blue); }
-  @media (max-width: 820px) { .db-grid { grid-template-columns: 1fr; gap: 28px; } .db-left { position: static; } }
+  .scene-dark .scene-lead { color: var(--text-on-dark-secondary); }
 
-  /* ── COMPARISON TABLE ── */
-  .cmp-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--card-dark); border-radius: 14px; overflow: hidden; border: 0.5px solid var(--card-border); }
-  .cmp-table th { text-align: left; font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 14px 18px; color: var(--text-tertiary); background: rgba(255,255,255,0.02); border-bottom: 0.5px solid var(--card-border); }
-  .cmp-table td { padding: 14px 18px; font-size: 14px; color: rgba(255,255,255,0.72); border-bottom: 0.5px solid rgba(255,255,255,0.04); vertical-align: middle; line-height: 1.5; }
-  .cmp-table tr:last-child td { border-bottom: none; }
-  .cmp-table .dest { font-weight: 600; color: var(--white); font-size: 15px; }
-  .cmp-table .time-cell { font-family: var(--mono); font-size: 13px; color: var(--bright-blue); }
-  .star { color: var(--blue); font-weight: 700; }
-  @media (max-width: 700px) { .cmp-table th:nth-child(n+4), .cmp-table td:nth-child(n+4) { display: none; } }
+  /* ============== HUB/TIMELINE: 三城汇合 ============== */
+  .hub-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    margin-bottom: 32px;
+  }
+  .hub-card {
+    background: var(--dark-card-2);
+    border-radius: 22px;
+    padding: 32px 28px;
+    text-align: left;
+    transition: transform .3s ease;
+  }
+  .hub-card:hover { transform: translateY(-4px); }
+  .hub-card .city {
+    font-size: 13px; font-weight: 600;
+    color: var(--bright-blue);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .hub-card .name {
+    font-size: 28px; font-weight: 600;
+    margin-bottom: 18px;
+    letter-spacing: -0.018em;
+  }
+  .hub-card .info-row {
+    display: flex; justify-content: space-between;
+    padding: 12px 0;
+    border-top: 1px solid var(--hairline);
+    font-size: 14px;
+    color: var(--text-on-dark-secondary);
+  }
+  .hub-card .info-row strong {
+    color: #fff; font-weight: 500;
+  }
+  .hub-card .info-row:first-of-type { border-top: none; padding-top: 0; }
+  .hub-note {
+    text-align: center;
+    color: var(--text-on-dark-tertiary);
+    font-size: 14px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  @media (max-width: 820px) {
+    .hub-grid { grid-template-columns: 1fr; }
+  }
 
-  /* ── TIPS LIGHT ── */
-  .tips-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-  .tip-card { background: var(--white); border-radius: 12px; padding: 24px; box-shadow: rgba(0,0,0,0.06) 0 2px 12px; }
-  .tip-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--gray-bg); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-  .tip-icon svg { color: var(--link-light); }
-  .tip-card h4 { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--near-black); }
-  .tip-card p { font-size: 13.5px; color: rgba(29,29,31,0.58); line-height: 1.65; letter-spacing: -0.01em; }
-  @media (max-width: 760px) { .tips-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .tips-grid { grid-template-columns: 1fr; } }
+  /* ============== DAY SCENE ============== */
+  .day-marker {
+    display: inline-flex; align-items: baseline; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .day-marker .num {
+    font-size: 80px; font-weight: 700;
+    line-height: 0.9;
+    background: linear-gradient(180deg, currentColor 50%, transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: var(--apple-blue);
+    letter-spacing: -0.04em;
+  }
+  .scene-dark .day-marker .num { color: var(--bright-blue); }
+  .day-marker .label {
+    font-size: 14px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+  }
+  .scene-dark .day-marker .label { color: var(--text-on-dark-tertiary); }
 
-  /* ── FINAL CTA ── */
-  .final { background: var(--black); text-align: center; padding: 130px 24px; }
-  .final h2 { font-size: clamp(36px,6vw,60px); font-weight: 700; line-height: 1.07; letter-spacing: -0.04em; color: var(--white); margin-bottom: 16px; }
-  .final h2 span { color: var(--bright-blue); }
-  .final p { font-size: 17px; font-weight: 300; color: var(--text-secondary); max-width: 44ch; margin: 0 auto 38px; line-height: 1.5; }
-  footer { background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.08); padding: 24px; text-align: center; font-size: 12px; color: var(--text-tertiary); letter-spacing: -0.01em; }
+  .timeline {
+    display: grid; gap: 16px;
+    margin-top: 40px;
+  }
+  .tl-item {
+    background: rgba(0,0,0,0.04);
+    border-radius: 18px;
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .scene-dark .tl-item { background: var(--dark-card-2); }
+  .tl-time {
+    font-size: 14px; font-weight: 600;
+    color: var(--apple-blue);
+    letter-spacing: -0.01em;
+    padding-top: 2px;
+  }
+  .scene-dark .tl-time { color: var(--bright-blue); }
+  .tl-body h3 {
+    font-size: 21px; font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.014em;
+  }
+  .tl-body p {
+    color: var(--text-secondary); font-size: 15px;
+    line-height: 1.5;
+  }
+  .scene-dark .tl-body p { color: var(--text-on-dark-secondary); }
+  .tl-tag {
+    display: inline-block;
+    margin-top: 10px; margin-right: 6px;
+    padding: 3px 10px;
+    border-radius: 980px;
+    background: rgba(0, 113, 227, 0.1);
+    color: var(--link-blue);
+    font-size: 12px; font-weight: 500;
+  }
+  .scene-dark .tl-tag {
+    background: rgba(41, 151, 255, 0.15);
+    color: var(--bright-blue);
+  }
+  .tl-tag-sunset {
+    background: rgba(255, 122, 69, 0.14);
+    color: var(--sunset-orange);
+  }
+  .scene-dark .tl-tag-sunset {
+    background: rgba(255, 122, 69, 0.2);
+    color: var(--sunset-orange);
+  }
+  @media (max-width: 640px) {
+    .tl-item { grid-template-columns: 1fr; gap: 8px; padding: 20px; }
+  }
 
-  /* scroll offset */
-  .section[id] { scroll-margin-top: 56px; }
+  /* ============== SUNSET FEATURE ============== */
+  .sunset-section {
+    background: var(--black);
+    color: #fff;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .sunset-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 80%, rgba(255, 122, 69, 0.22) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 30% at 30% 50%, rgba(255, 94, 126, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sunset-section .container, .sunset-section .container-wide {
+    position: relative; z-index: 1;
+  }
+  .sunset-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+    margin-top: 56px;
+  }
+  .sunset-card {
+    background: linear-gradient(135deg, var(--dark-card-3) 0%, var(--dark-card-1) 100%);
+    border: 1px solid var(--hairline);
+    border-radius: 22px;
+    padding: 36px;
+    transition: transform .3s, border-color .3s;
+  }
+  .sunset-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 122, 69, 0.35);
+  }
+  .sunset-card .rank {
+    font-size: 64px; font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(180deg, var(--sunset-orange), var(--sunset-rose));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.04em;
+    margin-bottom: 4px;
+  }
+  .sunset-card h3 {
+    font-size: 28px; font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.018em;
+  }
+  .sunset-card p {
+    color: var(--text-on-dark-secondary);
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  .sunset-card .meta {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--hairline);
+  }
+  .sunset-card .meta span {
+    font-size: 12px;
+    color: var(--text-on-dark-tertiary);
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 980px;
+  }
+  @media (max-width: 720px) { .sunset-grid { grid-template-columns: 1fr; } }
+
+  /* ============== FOOD STRIP ============== */
+  .food-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-top: 48px;
+  }
+  .food-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 28px 22px;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 6px 24px;
+    transition: transform .25s;
+  }
+  .food-card:hover { transform: translateY(-3px); }
+  .food-card .price {
+    font-size: 12px; font-weight: 600;
+    color: var(--apple-blue);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .food-card h4 {
+    font-size: 19px; font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.012em;
+  }
+  .food-card p {
+    color: var(--text-tertiary);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  @media (max-width: 880px) { .food-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .food-grid { grid-template-columns: 1fr; } }
+
+  /* ============== TIPS ============== */
+  .tips-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin-top: 48px;
+  }
+  .tip-card {
+    background: var(--dark-card-2);
+    border-radius: 22px;
+    padding: 32px 28px;
+  }
+  .tip-card .num {
+    font-size: 14px; font-weight: 600;
+    color: var(--bright-blue);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .tip-card h3 {
+    font-size: 22px; font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.014em;
+  }
+  .tip-card p {
+    font-size: 14px;
+    color: var(--text-on-dark-secondary);
+    line-height: 1.55;
+  }
+  @media (max-width: 880px) { .tips-grid { grid-template-columns: 1fr; } }
+
+  /* ============== BUDGET TABLE ============== */
+  .budget-row {
+    display: grid; grid-template-columns: 1.5fr 2.5fr 0.8fr;
+    padding: 22px 0;
+    border-top: 1px solid var(--hairline-light);
+    align-items: baseline;
+  }
+  .budget-row:first-child { border-top: none; padding-top: 0; }
+  .budget-row.total {
+    border-top: 2px solid var(--near-black);
+    padding-top: 24px;
+  }
+  .budget-row .label {
+    font-size: 17px; font-weight: 500;
+    letter-spacing: -0.014em;
+  }
+  .budget-row .desc {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+  .budget-row .price {
+    font-size: 17px; font-weight: 600;
+    text-align: right;
+    color: var(--near-black);
+    letter-spacing: -0.014em;
+  }
+  .budget-row.total .label, .budget-row.total .price {
+    font-size: 21px; font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .budget-row { grid-template-columns: 1fr; gap: 4px; }
+    .budget-row .price { text-align: left; }
+  }
+
+  /* ============== CTA ============== */
+  .cta-final {
+    background: var(--gray-bg);
+    text-align: center;
+    padding: 120px 22px;
+  }
+  .cta-final h2 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.02em;
+    max-width: 20ch;
+    margin: 0 auto 18px;
+  }
+  .cta-final p {
+    font-size: 19px;
+    color: var(--text-secondary);
+    margin-bottom: 36px;
+    max-width: 50ch;
+    margin-left: auto; margin-right: auto;
+  }
+
+  /* ============== FOOTER ============== */
+  footer {
+    background: var(--gray-bg);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 24px 22px;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  /* utility */
+  .lead-block { max-width: 720px; }
+  .lead-block-center { margin-left: auto; margin-right: auto; text-align: center; }
+
+  ::selection { background: var(--apple-blue); color: #fff; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ========== NAV ========== -->
 <nav class="nav">
-  <div class="nav-wrap">
-    <div class="nav-brand">端午四人行</div>
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="nav-logo-mark"></span>泉州 · 端午三日</div>
     <div class="nav-links">
-      <a href="#overview">方案总览</a>
-      <a href="#details">详细解析</a>
-      <a href="#compare">对比表</a>
-      <a href="#tips">实用建议</a>
+      <a href="#hub">汇合</a>
+      <a href="#day1">Day 1</a>
+      <a href="#day2">Day 2</a>
+      <a href="#day3">Day 3</a>
+      <a href="#sunset">日落点</a>
+      <a href="#food">吃</a>
+      <a href="#budget">预算</a>
     </div>
-    <a class="nav-pill" href="#overview">选方案 →</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-label">2026 端午 · 三天两夜 · 小众出行</div>
-  <h1 class="hero-h1">深圳 · 杭州 · 昆山，<br/><span>六个方向</span>任你选。</h1>
-  <p class="hero-sub">端午三天，四个城市的人要找一个路程平衡、不挤人、有自然有美食的地方。<br/>这里列了六个方案，先看总览，再看每个的精华和理由。</p>
-  <div class="chips">
-    <div class="chip"><strong>4</strong>&nbsp;人</div>
-    <div class="chip"><strong>6/19–6/21</strong>&nbsp;端午三天</div>
-    <div class="chip">高铁汇合 · 当地包车</div>
-    <div class="chip">小众 · 不挤人</div>
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">六月·端午</div>
+    <h1 class="hero-title">古城与海，<br/>在石狮看一场日落。</h1>
+    <p class="hero-sub">
+      四个朋友，从深圳、杭州、昆山三地出发。三天两夜，住在石狮全季，白天进泉州古城，黄昏沿海看日落。
+    </p>
+    <div class="hero-ctas">
+      <a href="#day1" class="btn-primary">查看行程</a>
+      <a href="#sunset" class="btn-link-pill">3 个日落点 →</a>
+    </div>
+
+    <div class="hotel-card">
+      <div class="icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/>
+        </svg>
+      </div>
+      <div class="hotel-card-body">
+        <div class="hotel-card-eyebrow">已订住宿</div>
+        <div class="hotel-card-name">全季泉州石狮青创城酒店</div>
+        <div class="hotel-card-meta">06.19 → 06.21 · 共 2 晚 · 高级大床房 × 2 间</div>
+      </div>
+    </div>
   </div>
-  <div class="hero-ctas">
-    <a href="#overview" class="cta-filled">看六个方案</a>
-    <a href="#compare" class="cta-ghost">直接看对比表</a>
+</header>
+
+<!-- ========== HUB / 汇合 ========== -->
+<section id="hub" class="scene scene-dark">
+  <div class="container">
+    <div class="scene-eyebrow">三城汇合</div>
+    <h2 class="scene-title">从三座城出发，<br/>同一个晚上落地。</h2>
+    <p class="scene-lead">
+      6 月 19 日（周五）傍晚到夜里，四人陆续抵达晋江/泉州站，打车 20–30 分钟到酒店汇合。最远的昆山稍微辛苦一点，但当晚石狮夜宵不会错过。
+    </p>
+
+    <div class="hub-grid">
+      <div class="hub-card">
+        <div class="city">深圳 · 1 人</div>
+        <div class="name">深圳北 → 晋江</div>
+        <div class="info-row"><span>最快高铁</span><strong>约 4h</strong></div>
+        <div class="info-row"><span>票价</span><strong>¥305 起</strong></div>
+        <div class="info-row"><span>建议班次</span><strong>14:00 后出发</strong></div>
+        <div class="info-row"><span>到酒店</span><strong>打车 25 分钟</strong></div>
+      </div>
+      <div class="hub-card">
+        <div class="city">杭州 · 2 人</div>
+        <div class="name">杭州东 → 泉州</div>
+        <div class="info-row"><span>最快高铁</span><strong>约 4h 20m</strong></div>
+        <div class="info-row"><span>票价</span><strong>¥320 起</strong></div>
+        <div class="info-row"><span>建议班次</span><strong>13:30 后出发</strong></div>
+        <div class="info-row"><span>到酒店</span><strong>打车 30 分钟</strong></div>
+      </div>
+      <div class="hub-card">
+        <div class="city">昆山 · 1 人</div>
+        <div class="name">昆山南 → 泉州</div>
+        <div class="info-row"><span>最快高铁</span><strong>约 5h 50m</strong></div>
+        <div class="info-row"><span>票价</span><strong>¥420 起</strong></div>
+        <div class="info-row"><span>建议班次</span><strong>11:30 前出发</strong></div>
+        <div class="info-row"><span>到酒店</span><strong>打车 30 分钟</strong></div>
+      </div>
+    </div>
+
+    <p class="hub-note">
+      ※ 高铁班次和价格按 12306 实时为准。建议优先订到「晋江站」(IQX)，离酒店更近、票更好抢。如果晋江站没合适班次，泉州站 (QZH) 是备选。
+    </p>
   </div>
 </section>
 
-<!-- OVERVIEW BENTO -->
-<section class="section dark" id="overview">
-  <div class="wrap">
-    <div class="eyebrow">六个方案</div>
-    <h2 class="s-h2">总览：有山、有海、有峡谷。</h2>
-    <p class="s-lead">每个方案都满足：高铁可达、端午人不多、有自然景色、有当地吃的。点击卡片跳到详细解析。</p>
+<!-- ========== DAY 1 ========== -->
+<section id="day1" class="scene scene-light">
+  <div class="container">
+    <div class="day-marker">
+      <span class="num">01</span>
+      <span class="label">06.19 · 周五 · 抵达 + 夜宵</span>
+    </div>
+    <h2 class="scene-title">不赶路，<br/>先吃海蛎煎。</h2>
+    <p class="scene-lead">
+      抵达即晚饭点，第一晚不安排任何景点，把行李扔回房间，直奔石狮老街吃宵夜——这是闽南夏夜最舒服的一种打开方式。
+    </p>
 
-    <div class="bento">
-
-      <!-- A -->
-      <a href="#detail-a" class="bento-card featured">
-        <span class="bento-num">01 / 06</span>
-        <span class="bento-badge bb-blue">⭐ 强烈推荐</span>
-        <div class="bento-name">武夷山<br/>周边小村</div>
-        <div class="bento-loc">福建 · 南平 · 武夷山东站</div>
-        <div class="bento-desc">绕开贵门票的核心景区，专攻吴屯梯田、下梅古村、竹海——这才是没有牌子的真正闽北。</div>
-        <div class="bento-tags">
-          <span class="btag">梯田徒步</span>
-          <span class="btag">古村</span>
-          <span class="btag">竹海</span>
-          <span class="btag">闽北菜</span>
-          <span class="btag">几乎免票</span>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">19:30</div>
+        <div class="tl-body">
+          <h3>酒店 Check-in · 集合</h3>
+          <p>四人在房间汇合，互相介绍各自带的特产，把空调开到 22℃，先冲个澡。</p>
+          <span class="tl-tag">高级大床房 × 2</span>
         </div>
-        <span class="bento-arrow">→</span>
-      </a>
-
-      <!-- B -->
-      <a href="#detail-b" class="bento-card">
-        <span class="bento-num">02 / 06</span>
-        <span class="bento-badge bb-teal">海岸</span>
-        <div class="bento-name">霞浦<br/>渔村滩涂</div>
-        <div class="bento-loc">福建 · 宁德 · 霞浦站</div>
-        <div class="bento-desc">摄影师最爱的滩涂光影。但不拍照也值——住渔排木屋，早起看渔船出港，海鲜价格是厦门的三分之一。</div>
-        <div class="bento-tags">
-          <span class="btag">滩涂光影</span>
-          <span class="btag">渔排住宿</span>
-          <span class="btag">新鲜海鲜</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">20:30</div>
+        <div class="tl-body">
+          <h3>石狮八卦街 · 当地人夜市</h3>
+          <p>距酒店 15 分钟车程。海蛎煎、五香卷、面线糊、烧仙草，闽南夜市的全套配置。本地人比游客多，价格不贵，4 人吃饱 ¥200 内。</p>
+          <span class="tl-tag">人均 ¥45</span>
+          <span class="tl-tag">闽南宵夜</span>
         </div>
-        <span class="bento-arrow">→</span>
-      </a>
-
-      <!-- C -->
-      <a href="#detail-c" class="bento-card">
-        <span class="bento-num">03 / 06</span>
-        <span class="bento-badge bb-orange">丹霞水上</span>
-        <div class="bento-name">泰宁<br/>丹霞峡谷</div>
-        <div class="bento-loc">福建 · 三明 · 泰宁站</div>
-        <div class="bento-desc">世界遗产级别的丹霞地貌，知名度远低于张掖。上清溪皮划艇几乎没有游客，最适合四个人一起折腾。</div>
-        <div class="bento-tags">
-          <span class="btag">皮划艇</span>
-          <span class="btag">溶洞穿越</span>
-          <span class="btag">世遗地貌</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">22:30</div>
+        <div class="tl-body">
+          <h3>回酒店 · 早睡</h3>
+          <p>明天进古城是重头戏，闽南六月白天闷热，得抢早出门，最迟 23:30 上床。</p>
         </div>
-        <span class="bento-arrow">→</span>
-      </a>
-
-      <!-- D -->
-      <a href="#detail-d" class="bento-card">
-        <span class="bento-num">04 / 06</span>
-        <span class="bento-badge bb-green">山水浙南</span>
-        <div class="bento-name">丽水<br/>松阳古村</div>
-        <div class="bento-loc">浙江 · 丽水 · 松阳站</div>
-        <div class="bento-desc">被称为"最后的江南秘境"，72个原始古村，没有开发过度，民宿价格极低，对杭州/昆山队最近。</div>
-        <div class="bento-tags">
-          <span class="btag">原始古村群</span>
-          <span class="btag">茶园梯田</span>
-          <span class="btag">浙南小吃</span>
-        </div>
-        <span class="bento-arrow">→</span>
-      </a>
-
-      <!-- E -->
-      <a href="#detail-e" class="bento-card">
-        <span class="bento-num">05 / 06</span>
-        <span class="bento-badge bb-pink">岛屿海风</span>
-        <div class="bento-name">南麂岛<br/>无人海岛</div>
-        <div class="bento-loc">浙江 · 平阳 · 坐船入岛</div>
-        <div class="bento-desc">国家级海洋自然保护区，不通高速不通大桥，只能坐船去。珊瑚礁潜水、空无一人的贝壳沙滩，端午人比想象的少很多。</div>
-        <div class="bento-tags">
-          <span class="btag">坐船入岛</span>
-          <span class="btag">珊瑚礁</span>
-          <span class="btag">贝壳沙滩</span>
-        </div>
-        <span class="bento-arrow">→</span>
-      </a>
-
-      <!-- F -->
-      <a href="#detail-f" class="bento-card">
-        <span class="bento-num">06 / 06</span>
-        <span class="bento-badge bb-yellow">峡谷溯溪</span>
-        <div class="bento-name">衢州<br/>钱江源</div>
-        <div class="bento-loc">浙江 · 衢州 · 开化站</div>
-        <div class="bento-desc">钱塘江的发源地，原始森林+溪流溯溪，完全没有旅游开发痕迹。四人组最适合的野溪玩法，衢州菜辣而鲜。</div>
-        <div class="bento-tags">
-          <span class="btag">溯溪</span>
-          <span class="btag">原始森林</span>
-          <span class="btag">衢州菜</span>
-        </div>
-        <span class="bento-arrow">→</span>
-      </a>
-
+      </div>
     </div>
   </div>
 </section>
 
-<!-- DETAILS -->
-<section class="section darkalt" id="details">
-  <div class="wrap">
-    <div class="eyebrow">逐个解析</div>
-    <h2 class="s-h2">精华在哪里，为什么选它。</h2>
-    <p class="s-lead">每个方案展开说清楚：核心亮点、实际交通、吃什么、需要注意什么。</p>
+<!-- ========== DAY 2 ========== -->
+<section id="day2" class="scene scene-dark">
+  <div class="container">
+    <div class="day-marker">
+      <span class="num">02</span>
+      <span class="label">06.20 · 周六 · 古城整日 + 蟳埔日落</span>
+    </div>
+    <h2 class="scene-title">白天泉州古城，<br/>傍晚簪花看海。</h2>
+    <p class="scene-lead">
+      整天主场。早上从酒店包车进泉州古城，西街、开元寺、钟楼一线步行。下午换到东边蟳埔渔村簪花拍照，黄昏在那里直接看海上日落，省一段路。
+    </p>
 
-    <!-- DETAIL A -->
-    <div class="detail-block" id="detail-a">
-      <div class="db-grid">
-        <div class="db-left">
-          <div class="db-num">方案 01</div>
-          <div class="db-badge-wrap"><span class="bento-badge bb-blue" style="font-size:12px">⭐ 强烈推荐</span></div>
-          <div class="db-name">武夷山<br/>周边小村</div>
-          <div class="db-where">福建 南平 · 武夷山东站</div>
-          <div class="db-rec">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            最推荐方案
-          </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">08:30</div>
+        <div class="tl-body">
+          <h3>酒店出发 · 包车进古城</h3>
+          <p>4 人包一辆 7 座 SUV，全天 ¥400–500。第一站丢在西街口，下车开始步行。</p>
+          <span class="tl-tag">车程 35 分钟</span>
         </div>
-        <div class="db-right">
-          <div class="db-card">
-            <div class="db-card-label">核心亮点</div>
-            <div class="db-card-title">避开景区，去景区后面的村子</div>
-            <div class="db-card-body">武夷山景区门票 ¥140，里面人挤人。但景区外的<strong>吴屯梯田</strong>（完全免票）、<strong>下梅古村</strong>（¥10）、<strong>曹墩竹海</strong>才是值得去的地方——6月梯田插秧后水面倒影，光线和色彩完全不输热门景点，但全程几乎不会遇到其他游客。</div>
-            <div class="db-specs">
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span>深圳北→武夷山东 约<strong style="color:var(--white)">4.5h</strong>，G字头直达；杭州<strong style="color:var(--white)">2.5h</strong>，昆山<strong style="color:var(--white)">3.5h</strong></span>
-              </div>
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1018 0 9 9 0 00-18 0M12 8v4l3 3"/></svg>
-                <span>三城时间差最小：最长4.5h vs 最短2.5h，差<strong style="color:var(--white)">2h</strong>，汇合最顺畅</span>
-              </div>
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
-                <span>人均总消费最低：约<strong style="color:var(--white)">¥840–1,050</strong>（含往返高铁）</span>
-              </div>
-            </div>
-          </div>
-          <div class="db-card">
-            <div class="db-card-label">吃什么</div>
-            <div class="db-card-title">闽北菜：熏鹅 · 竹笋宴 · 光饼</div>
-            <div class="db-card-body">熏鹅拌饭是武夷山本地第一小吃（¥25/份，不是旅游价格）。提前让民宿老板预订的<strong>竹笋宴</strong>，4人160元包桌，笋干炖蹄髈、鲜笋汤、笋丝炒肉，全是自家地里的东西。光饼是当地千年老吃食，早餐必打卡。</div>
-          </div>
-          <div class="info-strip">
-            <strong>为什么不推荐进武夷山景区？</strong> 门票¥140/人，还要加山上缆车，4人门票就¥560起。进去是人山人海的"打卡"体验。真正好玩的都在景区外，且完全免费——这个判断是当地人说的，不是攻略。
-          </div>
-          <div class="tag-row">
-            <span class="tag-item">梯田徒步</span><span class="tag-item">古村漫游</span><span class="tag-item">竹海</span><span class="tag-item">闽北菜</span><span class="tag-item">几乎零门票</span><span class="tag-item">交通最均衡</span>
-          </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">09:00</div>
+        <div class="tl-body">
+          <h3>西街 · 开元寺 · 东西塔</h3>
+          <p>泉州古城的灵魂。开元寺免费，东西塔是国内最高的石塔。早上人少且凉快，正好慢慢逛。出来后在西街找一家面线糊当早午餐。</p>
+          <span class="tl-tag">免费</span>
+          <span class="tl-tag">2 小时</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:30</div>
+        <div class="tl-body">
+          <h3>水门国仔面线糊（西街店）</h3>
+          <p>本地人推得最多的面线糊老店。猪血+大肠+鸭胗的搭配，蘸油条吃。¥20/份就饱。</p>
+          <span class="tl-tag">人均 ¥30</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:00</div>
+        <div class="tl-body">
+          <h3>钟楼 · 中山路骑楼</h3>
+          <p>南洋风骑楼老街，比厦门中山路安静得多。沿街找一家咖啡馆躲一下午后高温，推荐「真水闲院」「润饼皮」附近的小店。</p>
+          <span class="tl-tag">闲逛</span>
+          <span class="tl-tag">避暑</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:30</div>
+        <div class="tl-body">
+          <h3>蟳埔村 · 簪花体验</h3>
+          <p>从古城打车 25 分钟。蟳埔阿姨家的簪花体验 ¥40–80/人，全套含发型+花+拍照地图。男生也可以簪，效果意外的好。簪好慢慢逛蚵壳厝。</p>
+          <span class="tl-tag tl-tag-sunset">网红打卡</span>
+          <span class="tl-tag">人均 ¥60</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18:30</div>
+        <div class="tl-body">
+          <h3>蟳埔海堤 · 看日落</h3>
+          <p>就在簪花村出来海边走 5 分钟。簪着花、踩着滩涂、吹着风看太阳沉到泉州湾里——这是泉州最有仪式感的一段日落。</p>
+          <span class="tl-tag tl-tag-sunset">日落 · 第一选择</span>
+          <span class="tl-tag">日落约 19:15</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">20:00</div>
+        <div class="tl-body">
+          <h3>晚餐 · 阿芬海鲜</h3>
+          <p>蟳埔附近本地人海鲜大排档。海蛎煎、土笋冻、姜母鸭、白灼皮皮虾点齐，4 人一桌 ¥350 内。</p>
+          <span class="tl-tag">人均 ¥85</span>
+          <span class="tl-tag">海鲜</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">22:00</div>
+        <div class="tl-body">
+          <h3>包车回酒店</h3>
+          <p>蟳埔到酒店约 40 分钟，路上聊聊明天去哪个海。</p>
         </div>
       </div>
     </div>
-
-    <!-- DETAIL B -->
-    <div class="detail-block" id="detail-b">
-      <div class="db-grid">
-        <div class="db-left">
-          <div class="db-num">方案 02</div>
-          <div class="db-badge-wrap"><span class="bento-badge bb-teal" style="font-size:12px">海岸首选</span></div>
-          <div class="db-name">霞浦<br/>渔村滩涂</div>
-          <div class="db-where">福建 宁德 · 霞浦站</div>
-        </div>
-        <div class="db-right">
-          <div class="db-card">
-            <div class="db-card-label">核心亮点</div>
-            <div class="db-card-title">住在海上，早起看渔船出港</div>
-            <div class="db-card-body">霞浦是中国最会拍的渔村：紫菜养殖架和渔排在滩涂上排列成棋盘，退潮时的光影让摄影师组团来。但就算不拍照也值得来——住进真正的<strong>渔排木屋</strong>（房间架在海上），晚上听浪声，早上5点看渔船出港，吃刚捞上来的海鲜，这是体验，不是景点。</div>
-            <div class="db-specs">
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span>深圳北→霞浦 约<strong style="color:var(--white)">4h</strong>；杭州<strong style="color:var(--white)">3h</strong>；昆山<strong style="color:var(--white)">4h</strong>（福温高铁直达）</span>
-              </div>
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                <span>建议<strong style="color:var(--white)">现在就联系渔排民宿</strong>——端午前2周基本订满，旺季比平时贵</span>
-              </div>
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1018 0M12 3v4"/></svg>
-                <span>滩涂观光要看<strong style="color:var(--white)">潮汐时间</strong>，退潮后2小时最好看，需要提前查潮汐表安排</span>
-              </div>
-            </div>
-          </div>
-          <div class="db-card">
-            <div class="db-card-label">吃什么</div>
-            <div class="db-card-title">最便宜的新鲜海鲜</div>
-            <div class="db-card-body">霞浦海鲜价格是厦门的1/3，原因很简单：这里是原产地，没有旅游溢价。虾、蟹、花蛤、鱿鱼全按斤卖，渔排餐厅直接现取现做。4人一桌海鲜大餐 <strong>¥200–300</strong> 就能吃撑，含酒水。</div>
-          </div>
-          <div class="info-strip">
-            <strong>注意：</strong>霞浦这两年因为小红书开始走红，端午期间人比之前多。建议选<strong>小皓</strong>（而非东壁/北岐，这两个已经开始商业化），住宿今天就联系，否则剩下的都是贵价民宿。
-          </div>
-          <div class="tag-row">
-            <span class="tag-item">滩涂光影</span><span class="tag-item">渔排木屋</span><span class="tag-item">便宜海鲜</span><span class="tag-item">潮汐观光</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DETAIL C -->
-    <div class="detail-block" id="detail-c">
-      <div class="db-grid">
-        <div class="db-left">
-          <div class="db-num">方案 03</div>
-          <div class="db-badge-wrap"><span class="bento-badge bb-orange" style="font-size:12px">户外折腾</span></div>
-          <div class="db-name">泰宁<br/>丹霞峡谷</div>
-          <div class="db-where">福建 三明 · 泰宁站</div>
-        </div>
-        <div class="db-right">
-          <div class="db-card">
-            <div class="db-card-label">核心亮点</div>
-            <div class="db-card-title">皮划艇穿丹霞峡谷，几乎没有游客</div>
-            <div class="db-card-body">泰宁是世界自然遗产，但知名度远低于张掖，原因是它太远——这也是它仍然小众的原因。<strong>上清溪</strong>是核心体验：坐竹筏或皮划艇在丹霞峡谷里漂行，两侧红色石壁，水质清澈，3小时行程只要<strong>¥80/人</strong>，沿途游客极少。<strong>大金湖</strong>可以包小船穿洞，洞里有庙，有点神秘感。</div>
-            <div class="db-specs">
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span>深圳北→泰宁 约<strong style="color:var(--white)">5h</strong>（在沙县或三明转一次）；杭州<strong style="color:var(--white)">3.5h</strong>；昆山<strong style="color:var(--white)">4.5h</strong></span>
-              </div>
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-                <span>深圳需要转一次高铁，是六个方案里深圳最远的，但仍在可接受范围内</span>
-              </div>
-            </div>
-          </div>
-          <div class="db-card">
-            <div class="db-card-label">吃什么</div>
-            <div class="db-card-title">擂茶 · 石鱼豆腐 · 炸糍粑</div>
-            <div class="db-card-body">泰宁当地的<strong>擂茶</strong>是闽西特色，把茶叶、芝麻、花生擂成糊状，咸香，喝完精神一整天。石鱼（溪流小鱼）豆腐汤是当地人待客必备，配炸糍粑当早点，花不了多少钱。</div>
-          </div>
-          <div class="info-strip">
-            <strong>适合谁：</strong>四个人里如果有人喜欢皮划艇、漂流这类水上活动，泰宁是最对的选择。如果更偏好逛村吃饭发呆，则武夷山周边更合适。
-          </div>
-          <div class="tag-row">
-            <span class="tag-item">皮划艇峡谷</span><span class="tag-item">大金湖小船</span><span class="tag-item">丹霞地貌</span><span class="tag-item">擂茶</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DETAIL D -->
-    <div class="detail-block" id="detail-d">
-      <div class="db-grid">
-        <div class="db-left">
-          <div class="db-num">方案 04</div>
-          <div class="db-badge-wrap"><span class="bento-badge bb-green" style="font-size:12px">距离最近（杭州/昆山）</span></div>
-          <div class="db-name">丽水<br/>松阳古村</div>
-          <div class="db-where">浙江 丽水 · 松阳站</div>
-        </div>
-        <div class="db-right">
-          <div class="db-card">
-            <div class="db-card-label">核心亮点</div>
-            <div class="db-card-title">"最后的江南秘境"，72个古村没人去</div>
-            <div class="db-card-body">松阳被《纽约时报》列为"世界52个必去目的地"之一（2019年），但中国游客知道的人不多。全县<strong>72个</strong>保存完好的传统村落，茶园梯田和古宅错落，没有过度商业化——村里住的是真正的本地人，不是专门开给游客看的。民宿价格是婺源的一半，茶的质量却不逊色。</div>
-            <div class="db-specs">
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span>杭州→松阳 约<strong style="color:var(--white)">1.5h</strong>；昆山<strong style="color:var(--white)">2.5h</strong>；但深圳需要<strong style="color:var(--white)">5.5h</strong>，是深圳最远的方案</span>
-              </div>
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                <span>缺点明显：深圳距离偏远，三城时间差最大（1.5h vs 5.5h），如果你介意路途比别人长，这个不是最佳选择</span>
-              </div>
-            </div>
-          </div>
-          <div class="db-card">
-            <div class="db-card-label">吃什么</div>
-            <div class="db-card-title">松阳茶 · 豆腐娘 · 粉干</div>
-            <div class="db-card-body">松阳是浙南最大的茶叶集散地，<strong>松阳银猴</strong>绿茶在当地直接买，价格极低。<strong>豆腐娘</strong>（本地豆浆豆腐脑的混合体）是当地早餐主角，搭配米粉干，一碗6元。晚餐去松阳老街小馆吃鱼头豆腐汤，配咸肉炒笋。</div>
-          </div>
-          <div class="info-strip">
-            <strong>深圳的你需要注意：</strong>松阳对杭州/昆山队非常友好（最近），但对你来说路途最长。如果四个人一起商量觉得OK，松阳是六个方案里最安静、最接近"真实乡村"的选择。
-          </div>
-          <div class="tag-row">
-            <span class="tag-item">72个古村</span><span class="tag-item">茶园梯田</span><span class="tag-item">未开发</span><span class="tag-item">对杭州最近</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DETAIL E -->
-    <div class="detail-block" id="detail-e">
-      <div class="db-grid">
-        <div class="db-left">
-          <div class="db-num">方案 05</div>
-          <div class="db-badge-wrap"><span class="bento-badge bb-pink" style="font-size:12px">海岛体验</span></div>
-          <div class="db-name">南麂岛<br/>无人海岛</div>
-          <div class="db-where">浙江 平阳 · 坐船入岛</div>
-        </div>
-        <div class="db-right">
-          <div class="db-card">
-            <div class="db-card-label">核心亮点</div>
-            <div class="db-card-title">国家级保护区，只能坐船，不通大桥</div>
-            <div class="db-card-body">南麂岛是国家级海洋自然保护区，也是浙江最小众的离岛之一。没有高速公路，没有跨海大桥，从平阳鳌江码头坐船约<strong>1.5h</strong>进岛。岛上有珊瑚礁（中国大陆近海最北端的珊瑚礁群），沙滩是贝壳碎片铺成的，颜色偏黄白，退潮时能看到礁石上的海星和海胆。端午游客数量比嵊泗、普陀山少得多，因为很少人知道它。</div>
-            <div class="db-specs">
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span>先高铁到温州南/平阳，再打车到鳌江码头坐船：深圳<strong style="color:var(--white)">4h+1.5h</strong>；杭州<strong style="color:var(--white)">2.5h+1.5h</strong></span>
-              </div>
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                <span>船班有限制，需要<strong style="color:var(--white)">提前预订船票</strong>，端午期间可能会满。岛上住宿也少，要早订</span>
-              </div>
-            </div>
-          </div>
-          <div class="db-card">
-            <div class="db-card-label">吃什么</div>
-            <div class="db-card-title">岛上海鲜 · 紫菜饼 · 烤鱼</div>
-            <div class="db-card-body">南麂岛海鲜价格偏贵（因为交通成本），但质量极好，尤其是<strong>紫菜</strong>（当地最大产业）。岛上餐馆不多，主要是渔家乐风格，食材直接从港口来。早晨可以去码头看渔民卸货，新鲜程度有保证。</div>
-          </div>
-          <div class="info-strip">
-            <strong>这个方案的最大风险：</strong>3天2夜时间偏紧，往返船+高铁要消耗不少时间，真正在岛上玩的时间只有1.5天。如果对"坐船进小岛"这个体验很有执念，值得；如果时间有限更想放松，武夷山/松阳更合适。
-          </div>
-          <div class="tag-row">
-            <span class="tag-item">只能坐船</span><span class="tag-item">珊瑚礁</span><span class="tag-item">贝壳沙滩</span><span class="tag-item">国家保护区</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DETAIL F -->
-    <div class="detail-block" id="detail-f">
-      <div class="db-grid">
-        <div class="db-left">
-          <div class="db-num">方案 06</div>
-          <div class="db-badge-wrap"><span class="bento-badge bb-yellow" style="font-size:12px">野溪玩水</span></div>
-          <div class="db-name">衢州<br/>钱江源</div>
-          <div class="db-where">浙江 衢州 · 开化站</div>
-        </div>
-        <div class="db-right">
-          <div class="db-card">
-            <div class="db-card-label">核心亮点</div>
-            <div class="db-card-title">钱塘江源头，在原始森林里溯溪</div>
-            <div class="db-card-body">钱江源国家公园是钱塘江的发源地，核心区完全未开发。<strong>古田山</strong>原始阔叶林是华东保存最完好的植被，溪流清澈，可以直接喝。溯溪路线不长（约4公里），但要趟水、爬石头，四个人一起进山，比走修好的景区步道有意思多了。衢州城区有小而地道的衢州菜，辣而鲜，牛肉粉是标配。</div>
-            <div class="db-specs">
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span>深圳→衢州 约<strong style="color:var(--white)">3.5h</strong>；杭州<strong style="color:var(--white)">1h</strong>；昆山<strong style="color:var(--white)">2h</strong></span>
-              </div>
-              <div class="spec">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-                <span>深圳到衢州距离较近（3.5h），但深圳→衢州高铁班次少，出发时间要提前查好</span>
-              </div>
-            </div>
-          </div>
-          <div class="db-card">
-            <div class="db-card-label">吃什么</div>
-            <div class="db-card-title">衢州菜 · 辣兔头 · 牛肉粉</div>
-            <div class="db-card-body">衢州是出了浙江就很难找到的菜系。<strong>辣兔头</strong>是衢州最有名的小吃，卤料独特，一人啃两个刚好。<strong>衢州牛肉粉</strong>用清汤做底，牛肉切得薄、量给得大，是当地早餐必点。晚上去老街找小馆吃<strong>鸭头拼盘</strong>，配扎啤，一桌4人百来块搞定。</div>
-          </div>
-          <div class="info-strip">
-            <strong>隐藏优势：</strong>衢州对深圳来说是六个方案里时间第二短的（3.5h），且高铁班次充足。对杭州/昆山更是极近（1–2h）。如果四个人都喜欢在溪流里爬来爬去，这个方案在价格上是最划算的。
-          </div>
-          <div class="tag-row">
-            <span class="tag-item">溯溪</span><span class="tag-item">原始森林</span><span class="tag-item">衢州辣菜</span><span class="tag-item">深圳最近之一</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- COMPARE TABLE -->
-<section class="section light" id="compare">
-  <div class="wrap">
-    <div class="eyebrow light-eye">一眼对比</div>
-    <h2 class="s-h2" style="color:var(--near-black)">六个方案横向对比。</h2>
-    <p class="s-lead light-lead">关键维度：深圳时间、整体时间差、人流量、体验类型、人均费用。</p>
-    <table class="cmp-table">
-      <thead>
-        <tr>
-          <th>方案</th>
-          <th>深圳↔目的地</th>
-          <th>杭州↔目的地</th>
-          <th>三城时间差</th>
-          <th>人流量</th>
-          <th>体验重点</th>
-          <th>人均（含高铁）</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="dest">A · 武夷山周边 <span class="star">⭐</span></td>
-          <td class="time-cell">4.5h</td>
-          <td class="time-cell">2.5h</td>
-          <td class="time-cell">2h ✓</td>
-          <td>极少</td>
-          <td>梯田 · 古村 · 竹海</td>
-          <td class="time-cell">¥840–1,050</td>
-        </tr>
-        <tr>
-          <td class="dest">B · 霞浦渔村</td>
-          <td class="time-cell">4h</td>
-          <td class="time-cell">3h</td>
-          <td class="time-cell">1h ✓</td>
-          <td>近年增多</td>
-          <td>滩涂 · 渔排 · 海鲜</td>
-          <td class="time-cell">¥900–1,400</td>
-        </tr>
-        <tr>
-          <td class="dest">C · 泰宁丹霞</td>
-          <td class="time-cell">5h（转）</td>
-          <td class="time-cell">3.5h</td>
-          <td class="time-cell">1.5h</td>
-          <td>少</td>
-          <td>皮划艇 · 峡谷 · 溶洞</td>
-          <td class="time-cell">¥700–1,000</td>
-        </tr>
-        <tr>
-          <td class="dest">D · 丽水松阳</td>
-          <td class="time-cell">5.5h</td>
-          <td class="time-cell">1.5h</td>
-          <td class="time-cell">4h ✗</td>
-          <td>极少</td>
-          <td>古村群 · 茶园 · 古宅</td>
-          <td class="time-cell">¥750–1,000</td>
-        </tr>
-        <tr>
-          <td class="dest">E · 南麂岛</td>
-          <td class="time-cell">4h+船</td>
-          <td class="time-cell">2.5h+船</td>
-          <td class="time-cell">1.5h+船</td>
-          <td>极少</td>
-          <td>海岛 · 珊瑚礁 · 沙滩</td>
-          <td class="time-cell">¥950–1,300</td>
-        </tr>
-        <tr>
-          <td class="dest">F · 衢州钱江源</td>
-          <td class="time-cell">3.5h</td>
-          <td class="time-cell">1h</td>
-          <td class="time-cell">2.5h</td>
-          <td>少</td>
-          <td>溯溪 · 原始森林 · 衢菜</td>
-          <td class="time-cell">¥650–900</td>
-        </tr>
-      </tbody>
-    </table>
-    <p style="margin-top:16px;font-size:13px;color:rgba(29,29,31,0.42)">※ 时间均为高铁估算，以深圳北/杭州南/昆山南为出发站。人均含往返高铁 + 住宿 + 餐饮 + 包车/交通。</p>
+<!-- ========== DAY 3 ========== -->
+<section id="day3" class="scene scene-white">
+  <div class="container">
+    <div class="day-marker">
+      <span class="num">03</span>
+      <span class="label">06.21 · 周日 · 永宁古镇 + 返程</span>
+    </div>
+    <h2 class="scene-title">最后一天，<br/>就在酒店附近。</h2>
+    <p class="scene-lead">
+      第三天体力会下降，行程压在石狮本地——永宁古镇 + 红塔湾，都在酒店 20 分钟车程内。中午吃完饭就奔高铁站，避免耽误返程。
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">09:00</div>
+        <div class="tl-body">
+          <h3>酒店早餐 · 慢慢退房</h3>
+          <p>全季的早餐够吃，行李寄存在前台。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:00</div>
+        <div class="tl-body">
+          <h3>永宁古镇 · 番仔楼</h3>
+          <p>距酒店 20 分钟。明代卫城遗址 + 闽南华侨建的"番仔楼"群，南洋风+闽南风混血建筑，几乎没有游客。沿老街走一圈 1.5 小时。</p>
+          <span class="tl-tag">免费</span>
+          <span class="tl-tag">小众</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:30</div>
+        <div class="tl-body">
+          <h3>永宁老街午餐</h3>
+          <p>古镇里有几家家常菜馆，海蛎面线、煎堆、拳头母（手打肉丸），这一顿就在镇上解决。</p>
+          <span class="tl-tag">人均 ¥40</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:00</div>
+        <div class="tl-body">
+          <h3>红塔湾观海路 · 海边骑行（可选）</h3>
+          <p>如果你们意犹未尽，永宁出来 5 分钟到红塔湾，海岸线骑行 1 小时。租电动车 ¥30/辆。沿途有几个观景平台，白天的海也很好看。如果赶时间这一段可以删。</p>
+          <span class="tl-tag">可选</span>
+          <span class="tl-tag">1 小时</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:00</div>
+        <div class="tl-body">
+          <h3>回酒店取行李 · 出发高铁站</h3>
+          <p>晋江站 30 分钟，泉州站 40 分钟，预留 1.5 小时缓冲。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">17:00 后</div>
+        <div class="tl-body">
+          <h3>各自返程</h3>
+          <p>深圳：17:00 后高铁 4h，约 21:30 到家。<br/>杭州：17:30 后 4h20m，约 22:00 到家。<br/>昆山：建议 16:30 前班次，避免太晚。</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- TIPS -->
-<section class="section light" id="tips" style="padding-top:0">
-  <div class="wrap">
-    <div class="eyebrow light-eye">出发前</div>
-    <h2 class="s-h2" style="color:var(--near-black)">四件现在就要做的事。</h2>
-    <p class="s-lead light-lead">不管选哪个方案，这四件事越早处理越好。端午假期，晚一天就可能晚很多。</p>
+<!-- ========== SUNSET FEATURE ========== -->
+<section id="sunset" class="sunset-section">
+  <div class="container">
+    <div style="text-align: center;">
+      <div class="scene-eyebrow">日落 · Top 3</div>
+      <h2 class="scene-title scene-title-center">三个看日落的<br/>地方，按推荐排序。</h2>
+      <p class="scene-lead lead-block-center">
+        石狮和泉州沿海有十几处日落点，下面这三个按"距酒店远近 × 出片度 × 小众度"综合排序，第一选择放在 Day 2 的行程里。
+      </p>
+    </div>
+
+    <div class="sunset-grid">
+      <div class="sunset-card">
+        <div class="rank">01</div>
+        <h3>蟳埔海堤</h3>
+        <p>泉州最有仪式感的一段日落。簪着花、踩着滩涂、吹着海风，看太阳沉到泉州湾里。配合下午的簪花体验是天然搭配，已经排在 Day 2 行程里。</p>
+        <div class="meta">
+          <span>距酒店 35 km</span>
+          <span>日落约 19:15</span>
+          <span>免费</span>
+          <span>人多但值得</span>
+        </div>
+      </div>
+      <div class="sunset-card">
+        <div class="rank">02</div>
+        <h3>红塔湾观海路</h3>
+        <p>距酒店最近，骑电动车去最爽。一条沿海公路+几个观景台+一片小沙滩，几乎没人。日落时整条公路被染成橘色，是石狮当地人遛弯的地方。</p>
+        <div class="meta">
+          <span>距酒店 8 km</span>
+          <span>日落约 19:10</span>
+          <span>免费</span>
+          <span>非常小众</span>
+        </div>
+      </div>
+      <div class="sunset-card">
+        <div class="rank">03</div>
+        <h3>永宁黄金海岸</h3>
+        <p>沙滩 + 老灯塔，沙细水清。可以同时塞进 Day 3 的行程，永宁古镇出来 5 分钟到。如果天气好，是看完古镇直接连进的"加餐"日落点。</p>
+        <div class="meta">
+          <span>距酒店 12 km</span>
+          <span>日落约 19:12</span>
+          <span>¥30/人门票</span>
+          <span>沙滩出片</span>
+        </div>
+      </div>
+      <div class="sunset-card">
+        <div class="rank">04</div>
+        <h3>洛伽寺 · 海上观音</h3>
+        <p>备选。距酒店 10 km，建在海中礁石上的小寺，退潮时栈道走过去看夕阳。游客极少，氛围安静肃穆，适合不想拍照的人。</p>
+        <div class="meta">
+          <span>距酒店 10 km</span>
+          <span>日落约 19:13</span>
+          <span>免费</span>
+          <span>看潮汐时间</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOD ========== -->
+<section id="food" class="scene scene-white">
+  <div class="container">
+    <div style="text-align: center;">
+      <div class="scene-eyebrow">必吃 · 8 选 4</div>
+      <h2 class="scene-title scene-title-center">闽南菜的精华，<br/>不在餐厅，在巷子里。</h2>
+      <p class="scene-lead lead-block-center">
+        三天两夜大概能吃 6 顿正餐，挑下面这几样按节奏分配。简单原则：早面线糊、中海鲜、晚大排档。
+      </p>
+    </div>
+
+    <div class="food-grid">
+      <div class="food-card">
+        <div class="price">¥15–25</div>
+        <h4>面线糊</h4>
+        <p>泉州的早餐之神。猪血、大肠、鸭胗任意组合，蘸油条。</p>
+      </div>
+      <div class="food-card">
+        <div class="price">¥30–50</div>
+        <h4>海蛎煎</h4>
+        <p>新鲜海蛎+地瓜粉+鸡蛋下锅煎。石狮本地比泉州市区做得好。</p>
+      </div>
+      <div class="food-card">
+        <div class="price">¥45/份</div>
+        <h4>姜母鸭</h4>
+        <p>整只老母鸭+老姜+米酒慢炖。闽南夏天补气血，4 人吃刚好。</p>
+      </div>
+      <div class="food-card">
+        <div class="price">¥20</div>
+        <h4>土笋冻</h4>
+        <p>沙虫熬煮成冻，蘸醋蒜泥。第一次吃要心理建设，但确实好吃。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TIPS ========== -->
+<section class="scene scene-dark">
+  <div class="container">
+    <div class="scene-eyebrow">行前 · 注意</div>
+    <h2 class="scene-title">六月的泉州，<br/>湿、热、阵雨。</h2>
+    <p class="scene-lead">
+      端午前后是闽南雨季，要带的不是防晒霜，是雨具和电解质。下面 6 件事现在就开始准备。
+    </p>
+
     <div class="tips-grid">
       <div class="tip-card">
-        <div class="tip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <h4>高铁票今天就抢</h4>
-        <p>端午6月19日是出行高峰首日，深圳北→目的地的早班高铁（7–9点出发）库存极少。四个人各自订，票种可以先抢再改日期，但不要等到确认方案后再订，那时候可能只剩站票。</p>
+        <div class="num">01</div>
+        <h3>高铁票今天订</h3>
+        <p>端午 6/19 上午班次现在（5/29）已经开始紧。优先订晋江站，4 人尽量同班次方便接。</p>
       </div>
       <div class="tip-card">
-        <div class="tip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-        </div>
-        <h4>民宿现在联系</h4>
-        <p>小众目的地的好民宿数量有限，不是平台上的标准酒店。建议小红书搜索目的地+民宿，直接联系房主微信。霞浦渔排、松阳古村民宿尤其紧张，端午前10天基本订满。</p>
+        <div class="num">02</div>
+        <h3>包车直接联系</h3>
+        <p>古城和蟳埔距离远，4 人包 7 座车 ¥400–500/天最划算。在小红书搜"泉州包车"挑评分高的师傅。</p>
       </div>
       <div class="tip-card">
-        <div class="tip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h4>昆山的朋友先到杭州</h4>
-        <p>从路线设计上，昆山的朋友先去杭州南汇合杭州两位朋友，三人同乘南下最省心。昆山南→杭州南约35分钟，比各自出发再在目的地汇合省掉很多变数。</p>
+        <div class="num">03</div>
+        <h3>带轻便雨具</h3>
+        <p>六月闽南阵雨频繁但短暂。每人一把折叠伞或一件薄雨衣，比临时买便利店的强 100 倍。</p>
       </div>
       <div class="tip-card">
-        <div class="tip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </div>
-        <h4>确认方案后包车今晚联系</h4>
-        <p>端午当地包车司机也会被提前约满。确定目的地后，让民宿老板推荐包车司机，或者在目的地相关的微信群/小红书找到当地司机微信，说好人数和行程，提前锁定。</p>
+        <div class="num">04</div>
+        <h3>白天热到 33℃</h3>
+        <p>古城逛街选 9:00–11:30 和 16:00 后两个时段。中午 12–15 点找咖啡馆躲一下。</p>
       </div>
       <div class="tip-card">
-        <div class="tip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h4>6月出行必带防蚊</h4>
-        <p>山区竹林、梯田、溪流附近蚊虫在6月非常活跃。DEET 25%以上的驱蚊喷雾、徒步穿长裤长袖是基本要求。不要因为这个影响整体体验，提前准备好就不是问题。</p>
+        <div class="num">05</div>
+        <h3>簪花预约</h3>
+        <p>蟳埔的簪花阿姨周末排队夸张。Day 2 想簪花，建议出发前 3–5 天小红书私信预约。</p>
       </div>
       <div class="tip-card">
-        <div class="tip-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-        <h4>AA 从现在建好群</h4>
-        <p>四个人出行，建议出发前每人先转¥1,000–1,500 AA进同一个账户，高铁票、民宿、包车统一出，避免零碎分账。回来后多退少补，比每次吃饭拆账省事太多。</p>
+        <div class="num">06</div>
+        <h3>电解质水</h3>
+        <p>湿热出汗多，宝矿力或盐汽水比矿泉水有用。便利店都有，每天 1 瓶/人。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final">
-  <h2>选好了，<span>四人出发。</span></h2>
-  <p>把方案发进群里投票，今晚确认，高铁票和民宿明天开始动手。</p>
-  <div class="hero-ctas">
-    <a href="#overview" class="cta-filled">回到方案总览</a>
-    <a href="#compare" class="cta-ghost">看对比表</a>
+<!-- ========== BUDGET ========== -->
+<section id="budget" class="scene scene-light">
+  <div class="container">
+    <div class="scene-eyebrow">预算 · 人均</div>
+    <h2 class="scene-title">三天两夜，<br/>每人 ¥1,500 上下。</h2>
+    <p class="scene-lead">
+      不含国际航班、个人购物。住宿按 4 人 2 间 AA，餐饮按行程清单实算，预留了一定缓冲。
+    </p>
+
+    <div style="margin-top: 56px;">
+      <div class="budget-row">
+        <div class="label">高铁往返</div>
+        <div class="desc">深圳/杭州/昆山平均约 ¥720（深圳更贵，昆山次之）</div>
+        <div class="price">¥720</div>
+      </div>
+      <div class="budget-row">
+        <div class="label">住宿</div>
+        <div class="desc">全季高级大床房 ¥420/晚 × 2 晚 × 2 间 ÷ 4 人</div>
+        <div class="price">¥420</div>
+      </div>
+      <div class="budget-row">
+        <div class="label">餐饮</div>
+        <div class="desc">3 天共 6 顿（¥40-85/人）+ 夜宵零食</div>
+        <div class="price">¥360</div>
+      </div>
+      <div class="budget-row">
+        <div class="label">包车 + 打车</div>
+        <div class="desc">Day 2 包车 ¥500，Day 1/3 零散打车 ¥200，4 人 AA</div>
+        <div class="price">¥175</div>
+      </div>
+      <div class="budget-row">
+        <div class="label">体验/门票</div>
+        <div class="desc">簪花 ¥60、黄金海岸 ¥30，开元寺/古城/永宁全免费</div>
+        <div class="price">¥90</div>
+      </div>
+      <div class="budget-row">
+        <div class="label">机动备用金</div>
+        <div class="desc">应急、临时改行程、加 SPA/按摩等</div>
+        <div class="price">¥150</div>
+      </div>
+      <div class="budget-row total">
+        <div class="label">合计 / 人</div>
+        <div class="desc"></div>
+        <div class="price">¥1,915</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<footer>端午四人行 · 深圳 + 杭州×2 + 昆山 · 2026年6月19–21日 · 六方案供选择</footer>
+<!-- ========== CTA ========== -->
+<section class="cta-final">
+  <h2>把链接发给另外三个人，<br/>开始抢高铁票。</h2>
+  <p>这个页面已经部署在 GitHub Pages 上，手机直接打开。如果方案 OK，今天就把高铁票订掉。</p>
+  <div class="hero-ctas" style="justify-content: center;">
+    <a href="#day1" class="btn-primary">回到行程</a>
+    <a href="#hub" class="btn-link-pill" style="color: var(--link-blue); border-color: var(--link-blue);">三城高铁信息 →</a>
+  </div>
+</section>
+
+<footer>
+  泉州·端午三日 · 为四人成行而做 · Designed for friends.
+</footer>
 
 </body>
 </html>
