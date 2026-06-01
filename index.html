@@ -192,9 +192,13 @@
 
   /* ============== ROUTE MAP (Leaflet 真高德地图) ============== */
   .map-section { padding: 100px 0 110px; }
+  .map-toolbar {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
   .map-tabs {
-    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
-    margin-bottom: 28px;
+    display: flex; gap: 8px; flex-wrap: wrap;
   }
   .map-tab {
     background: rgba(0,0,0,0.04);
@@ -211,16 +215,70 @@
   .map-tab.active {
     background: var(--black); color: #fff;
   }
+  .map-fullscreen-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--apple-blue);
+    color: #fff;
+    border: none;
+    font-family: inherit;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: -0.01em;
+    padding: 9px 16px; border-radius: 980px;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .map-fullscreen-btn:hover { background: #0077ed; transform: translateY(-1px); }
+  .map-fullscreen-btn svg { width: 14px; height: 14px; }
   .map-wrap {
     background: linear-gradient(180deg, #f5f5f7 0%, #ececef 100%);
     border-radius: 22px;
     padding: 16px;
     overflow: hidden;
     box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 28px rgba(0,0,0,0.06);
+    position: relative;
   }
+  .map-wrap.fullscreen-active {
+    position: fixed; inset: 0;
+    z-index: 9999;
+    border-radius: 0;
+    padding: 0;
+    background: #000;
+  }
+  .map-wrap.fullscreen-active #routeMap {
+    height: 100vh !important;
+    border-radius: 0;
+  }
+  .map-wrap.fullscreen-active .map-fs-toolbar {
+    position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 10000;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 8px;
+    border-radius: 980px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+    display: flex; gap: 6px;
+  }
+  .map-wrap.fullscreen-active .map-fs-close {
+    position: absolute; top: 16px; right: 20px;
+    z-index: 10000;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+    font-size: 22px;
+    color: #1d1d1f;
+  }
+  .map-fs-toolbar { display: none; }
+  .map-fs-close { display: none; }
   #routeMap {
     width: 100%;
-    height: 560px;
+    height: 720px;
     border-radius: 14px;
     background: #e3f0fb;
     z-index: 1;
@@ -297,7 +355,10 @@
   @media (max-width: 720px) {
     .map-legend { grid-template-columns: 1fr; gap: 10px; }
     .map-tab { font-size: 12px; padding: 8px 14px; }
-    #routeMap { height: 420px; }
+    .map-toolbar { flex-direction: column; align-items: stretch; }
+    .map-tabs { justify-content: center; }
+    .map-fullscreen-btn { justify-content: center; }
+    #routeMap { height: 480px; }
   }
 
   .scene-eyebrow {
@@ -760,15 +821,28 @@
       </p>
     </div>
 
-    <div class="map-tabs">
-      <button class="map-tab active" data-day="all">全部路线</button>
-      <button class="map-tab" data-day="d1">Day 1 · 抵达</button>
-      <button class="map-tab" data-day="d2">Day 2 · 古城+日落</button>
-      <button class="map-tab" data-day="d3">Day 3 · 海岸+返程</button>
+    <div class="map-toolbar">
+      <div class="map-tabs">
+        <button class="map-tab active" data-day="all">全部路线</button>
+        <button class="map-tab" data-day="d1">Day 1 · 抵达</button>
+        <button class="map-tab" data-day="d2">Day 2 · 古城+日落</button>
+        <button class="map-tab" data-day="d3">Day 3 · 海岸+返程</button>
+      </div>
+      <button class="map-fullscreen-btn" id="mapFullscreenBtn" type="button" aria-label="全屏查看地图">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        <span>全屏查看</span>
+      </button>
     </div>
 
-    <div class="map-wrap">
+    <div class="map-wrap" id="mapWrap">
       <div id="routeMap" aria-label="泉州石狮三日行程真实地图"></div>
+      <button class="map-fs-close" id="mapFsClose" type="button" aria-label="退出全屏">×</button>
+      <div class="map-fs-toolbar" id="mapFsToolbar">
+        <button class="map-tab active" data-day="all">全部</button>
+        <button class="map-tab" data-day="d1">Day 1</button>
+        <button class="map-tab" data-day="d2">Day 2</button>
+        <button class="map-tab" data-day="d3">Day 3</button>
+      </div>
     </div>
 
     <!-- 图例 -->
@@ -1184,26 +1258,28 @@
   (function() {
     if (typeof L === 'undefined') return;
 
-    // 真实经纬度（WGS84，高德瓦片自带 GCJ02 偏移，下面用 GCJ02 坐标）
-    // 这些坐标是从高德地图直接取的 GCJ02
+    // 真实经纬度（GCJ02，与高德瓦片对齐）
+    // 来源：维基百科 + 百度百科 + 官方酒店地址，经 WGS84→GCJ02 精确转换
     const POINTS = {
-      quanzhouSouth: { lat: 24.7868, lng: 118.5793, name: '泉州南站', sub: '高铁汇合点', day: 'station' },
-      quanzhouOldTown: { lat: 24.9120, lng: 118.5808, name: '泉州古城', sub: '西街·开元寺·钟楼', day: 'd2' },
-      xunpu: { lat: 24.9067, lng: 118.6695, name: '蟳埔渔村', sub: '簪花体验', day: 'd2' },
-      xunpuSeawall: { lat: 24.9000, lng: 118.6790, name: '蟳埔海堤', sub: '🌅 主日落点', day: 'sunset' },
-      hotel: { lat: 24.7406, lng: 118.6520, name: '全季石狮酒店', sub: '据点 · 2 晚', day: 'hotel' },
-      bagua: { lat: 24.7350, lng: 118.6580, name: '八卦街夜市', sub: '海蛎煎·夜宵', day: 'd1' },
-      yongning: { lat: 24.6588, lng: 118.6780, name: '永宁古镇', sub: '番仔楼', day: 'd3' },
-      redTower: { lat: 24.6720, lng: 118.7160, name: '红塔湾观海路', sub: '🌊 骑行/海岸', day: 'd3' }
+      quanzhouSouth:    { lat: 24.73703, lng: 118.58482, name: '泉州南站',     sub: '高铁汇合点',     day: 'station' },
+      quanzhouOldTown:  { lat: 24.91079, lng: 118.58601, name: '泉州古城',     sub: '钟楼·西街·开元寺', day: 'd2' },
+      xunpu:            { lat: 24.85831, lng: 118.65731, name: '蟳埔渔村',     sub: '簪花体验',       day: 'd2' },
+      xunpuSeawall:     { lat: 24.85526, lng: 118.66501, name: '蟳埔海堤',     sub: '🌅 主日落点',    day: 'sunset' },
+      hotel:            { lat: 24.74334, lng: 118.65869, name: '全季石狮酒店', sub: '据点 · 2 晚',    day: 'hotel' },
+      bagua:            { lat: 24.73165, lng: 118.66340, name: '八卦街夜市',   sub: '海蛎煎·夜宵',    day: 'd1' },
+      yongning:         { lat: 24.67976, lng: 118.68955, name: '永宁古镇',     sub: '番仔楼·老街',    day: 'd3' },
+      redTower:         { lat: 24.66511, lng: 118.69957, name: '红塔湾观海路', sub: '🌊 骑行/海岸',   day: 'd3' }
     };
 
     // 初始化地图
     const map = L.map('routeMap', {
-      center: [24.82, 118.65],
-      zoom: 10,
+      center: [24.79, 118.63],
+      zoom: 11,
       zoomControl: true,
       attributionControl: true,
-      scrollWheelZoom: true
+      scrollWheelZoom: true,
+      minZoom: 9,
+      maxZoom: 17
     });
 
     // 高德地图瓦片（无需 key）
@@ -1267,47 +1343,89 @@
     const allLatLngs = Object.values(POINTS).map(p => [p.lat, p.lng]);
     map.fitBounds(allLatLngs, { padding: [40, 40] });
 
-    // tab 切换
-    const tabs = document.querySelectorAll('.map-tab');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const day = tab.dataset.day;
+    // tab 切换 — 同步两组 tab（顶部和全屏内）
+    const allTabs = document.querySelectorAll('.map-tab');
 
-        // 路线显隐
-        Object.keys(polylines).forEach(d => {
-          const pl = polylines[d];
-          if (day === 'all' || day === d) {
-            pl.setStyle({ opacity: 0.9 });
-          } else {
-            pl.setStyle({ opacity: 0.12 });
-          }
-        });
+    function activateDay(day) {
+      // 同步所有 tab 的 active 状态
+      allTabs.forEach(t => {
+        if (t.dataset.day === day) t.classList.add('active');
+        else t.classList.remove('active');
+      });
 
-        // marker 显隐（station/hotel/sunset 永远显示）
-        Object.keys(markers).forEach(k => {
-          const p = POINTS[k];
-          const el = markers[k].getElement();
-          if (!el) return;
-          let visible = true;
-          if (day !== 'all') {
-            if (p.day === 'd1' || p.day === 'd2' || p.day === 'd3') {
-              visible = (p.day === day);
-            }
-            // hotel / station / sunset 默认显示
-          }
-          el.style.opacity = visible ? '1' : '0.25';
-        });
-
-        // 自动 fit 到当天路线
-        if (day !== 'all') {
-          const dayPoints = ROUTES[day].points.map(k => [POINTS[k].lat, POINTS[k].lng]);
-          map.fitBounds(dayPoints, { padding: [50, 50] });
+      // 路线显隐
+      Object.keys(polylines).forEach(d => {
+        const pl = polylines[d];
+        if (day === 'all' || day === d) {
+          pl.setStyle({ opacity: 0.92, weight: 5 });
         } else {
-          map.fitBounds(allLatLngs, { padding: [40, 40] });
+          pl.setStyle({ opacity: 0.12, weight: 3 });
         }
       });
+
+      // marker 显隐（station/hotel/sunset 永远显示）
+      Object.keys(markers).forEach(k => {
+        const p = POINTS[k];
+        const el = markers[k].getElement();
+        if (!el) return;
+        let visible = true;
+        if (day !== 'all') {
+          if (p.day === 'd1' || p.day === 'd2' || p.day === 'd3') {
+            visible = (p.day === day);
+          }
+        }
+        el.style.opacity = visible ? '1' : '0.22';
+      });
+
+      // 自动 fit 到当天路线
+      if (day !== 'all') {
+        const dayPoints = ROUTES[day].points.map(k => [POINTS[k].lat, POINTS[k].lng]);
+        map.fitBounds(dayPoints, { padding: [60, 60] });
+      } else {
+        map.fitBounds(allLatLngs, { padding: [50, 50] });
+      }
+    }
+
+    allTabs.forEach(tab => {
+      tab.addEventListener('click', () => activateDay(tab.dataset.day));
+    });
+
+    // ========== 全屏切换 ==========
+    const wrap = document.getElementById('mapWrap');
+    const fsBtn = document.getElementById('mapFullscreenBtn');
+    const fsClose = document.getElementById('mapFsClose');
+
+    function enterFullscreen() {
+      wrap.classList.add('fullscreen-active');
+      document.body.style.overflow = 'hidden';
+      // 让 leaflet 重新计算尺寸
+      setTimeout(() => {
+        map.invalidateSize();
+        map.fitBounds(allLatLngs, { padding: [80, 80] });
+      }, 100);
+    }
+
+    function exitFullscreen() {
+      wrap.classList.remove('fullscreen-active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        map.invalidateSize();
+        const activeDay = document.querySelector('.map-tab.active')?.dataset.day || 'all';
+        if (activeDay === 'all') {
+          map.fitBounds(allLatLngs, { padding: [50, 50] });
+        } else {
+          const dayPoints = ROUTES[activeDay].points.map(k => [POINTS[k].lat, POINTS[k].lng]);
+          map.fitBounds(dayPoints, { padding: [60, 60] });
+        }
+      }, 100);
+    }
+
+    fsBtn.addEventListener('click', enterFullscreen);
+    fsClose.addEventListener('click', exitFullscreen);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wrap.classList.contains('fullscreen-active')) {
+        exitFullscreen();
+      }
     });
   })();
 </script>
